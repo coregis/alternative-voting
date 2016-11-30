@@ -118,16 +118,6 @@ L.mapbox.accessToken = 'pk.eyJ1IjoiY29yZS1naXMiLCJhIjoiaUxqQS1zQSJ9.mDT5nb8l_dWI
 	  return "black.svg";
   }
 
-  /*
-  Need to figure out how to style the points stored in overlayMaps using the attribute marker-color from the Google spreadsheet from line 3; the code below is from a jsfiddle I found at http://jsfiddle.net/erictheise/HQhzr/22/
-  */
-  
-  /*
-   {
-    style: function(feature) {
-        return {color: feature.properties.marker-color};
-    },
-  */
   
   L.control.layers(false, overlayMaps).addTo(map);
   map.addLayer(approvalBucklin);

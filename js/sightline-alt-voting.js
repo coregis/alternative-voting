@@ -1,6 +1,6 @@
 //replace the url for the spreadsheet being mapped here
 window.onload=function(){
-	getSpreadsheet('https://docs.google.com/spreadsheets/d/1RnULjaAdDZ8VUCgwO61eItVujAbpSZuEnK0hIBLVGns/pubhtml');
+	getSpreadsheet('https://docs.google.com/spreadsheets/d/147IvLgMgQGpp15TFb7tZNmTUMwU0YVgkMXjl4FhNepQ/pubhtml');
 }
 
 //all of this is happening asynchronously; the callback is telling Tabletop to build the map using the spreadsheet
@@ -73,7 +73,6 @@ L.mapbox.accessToken = 'pk.eyJ1IjoiY29yZS1naXMiLCJhIjoiaUxqQS1zQSJ9.mDT5nb8l_dWI
 	"Single Transferable Vote": singleTransferable
   };
   
-  
   function chooseIcon(category, active) {  
 	  if (active.toLowerCase() === "yes"){
 		  if (category === "limited vote") {
@@ -117,6 +116,54 @@ L.mapbox.accessToken = 'pk.eyJ1IjoiY29yZS1naXMiLCJhIjoiaUxqQS1zQSJ9.mDT5nb8l_dWI
 	  }
 	  return "black.svg";
   }
+  
+  /*Because of additional permutations of state/school/past/current/ need to set the icons from the marker-file attribute*/
+  
+ /* function chooseIcon(marker-file) {  
+	  if (marker-file === "cumulative-current-school.svg") {
+		  return "cumulative-current-school.svg";
+	  }
+	  else if (marker-file === "cumulative-current.svg") {
+		  return "cumulative-current.svg";
+	  }
+	  else if (marker-file === "cumulative-current-state.svg") {
+		  return "cumulative-current-state.svg";
+	  }	  
+	  else if (marker-file === "cumulative-past-school.svg") {
+		  return "cumulative-past-school.svg";
+	  }
+	  else if (marker-file === "cumulative-past-state.svg") {
+		  return "cumulative-past-state.svg";
+	  }
+	  else if (marker-file === "cumulative-past.svg") {
+		  return "cumulative-past.svg";
+	  }	  
+	  else if (marker-file === "limited-current-school.svg") {
+		  return "limited-current-school.svg";
+	  }
+	  else if (marker-file === "limited-current.svg") {
+		  return "limited-current.svg";
+	  }
+	  else if (marker-file === "limited-past-school.svg") {
+		  return "limited-past-school.svg";
+	  }
+	  else if (marker-file === "limited-past.svg") {
+		  return "limited-past.svg";
+	  }
+	  else if (marker-file === "ranked-choice-current.svg") {
+		  return "ranked-choice-current.svg";
+	  }
+	  else if (marker-file === "ranked-choice-past-school.svg") {
+		  return "ranked-choice-past-school.svg";
+	  }
+	  else if (marker-file === "ranked-choice-past-state.svg") {
+		  return "ranked-choice-past-state.svg";
+	  }
+	  else if (marker-file === "ranked-choice-past.svg") {
+		  return "ranked-choice-past.svg";
+	  }		
+	  return "black.svg";
+  }*/
 
   
   L.control.layers(false, overlayMaps).addTo(map);
@@ -155,12 +202,18 @@ function metadata(properties) {
     if (prop != 'lat' &&
         prop != 'lng' &&
         prop != 'marker-color' &&		
+        prop != 'marker-file' &&
+		prop != 'active' &&
         prop != 'rowNumber' &&
+        prop != 'moreinfo-text2' &&
+        prop != 'moreinfo-text3' &&
+        prop != 'moreinfo-text4' &&
+        prop != 'rowNumber' &&		
 		properties[prop].length > 0) {
       //prop is the field name from the spreadsheet; properties is the geoJSON generated from one row of the spreadsheet
 	  //INSTEAD OF PROP, NEED TO WRITE A NEW FUNCTION THAT DOES TEXT SUBSTITUTIONS
 	  //get rid of <strong>"+prop+"</strong>: to not show the field names in the popup
-	  info += "<p class='"+prop+"'><strong>"+prop+"</strong>: "+properties[prop]+"</p>";
+	  info += "<p class='"+prop+"'>"+properties[prop]+"</p>";
     }
   }
   console.log(info);

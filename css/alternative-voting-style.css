@@ -41,6 +41,7 @@ p {
   background: #29473d;
   color:#fff;
   font-size:12px;
+ /* width:auto !important;*/
   }
   
 .leaflet-popup-content-wrapper {

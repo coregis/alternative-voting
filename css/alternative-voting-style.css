@@ -37,6 +37,12 @@ p {
 	font-weight: normal;
 }
 
+.leaflet-popup-scrolled {
+  overflow:auto;
+  border-bottom:1px solid #29473d;
+  border-top:1px solid #29473d;
+  }
+
 .leaflet-popup-content {
   background: #29473d;
   color:#fff;
@@ -75,7 +81,11 @@ p {
   display: block;
   color: #fff
   }
-  
+ 
+a.leaflet-popup-close-button {
+	color: #fff
+}
+ 
 a:link{
   color:#b1d4cb;
 }

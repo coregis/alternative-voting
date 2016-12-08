@@ -42,7 +42,7 @@ L.mapbox.accessToken = 'pk.eyJ1IjoiY29yZS1naXMiLCJhIjoiaUxqQS1zQSJ9.mDT5nb8l_dWI
 		shadowSize: [68, 95],
 		shadowAnchor: [22, 94]*/
 	}));
-    marker.bindPopup(popupInfo);
+    marker.bindPopup(popupInfo,{'maxWidth':'350','maxHeight':'350','minWidth':'200'});
     points.addLayer(marker);
 	if (category === "limited vote") {
 	  limitedVote.addLayer(marker);
@@ -179,9 +179,10 @@ L.mapbox.accessToken = 'pk.eyJ1IjoiY29yZS1naXMiLCJhIjoiaUxqQS1zQSJ9.mDT5nb8l_dWI
   map.fitBounds(bounds, {padding:[10,10]});
 
   map.setView(map.getCenter());
-  map.setMaxBounds(bounds);
+/*These three lines prevent the user from zooming out to space or panning to Europe; however, they prevent popups from appearing for points near bound limits*/ 
+ /*map.setMaxBounds(bounds);
   map.options.maxZoom = 9;
-  map.options.minZoom = 5;
+  map.options.minZoom = 5;*/
 
   map.on('click', function(e) {
     var coords = document.getElementById('coords');

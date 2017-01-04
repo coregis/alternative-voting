@@ -206,7 +206,7 @@ function metadata(properties) {
     if (prop != 'lat' &&
         prop != 'lng' &&
         prop != 'marker-color' &&		
-        prop != 'marker-file' &&
+        prop != 'markerfile' &&
 		prop != 'active' &&
         prop != 'rowNumber' &&
         prop != 'moreinfo-text2' &&

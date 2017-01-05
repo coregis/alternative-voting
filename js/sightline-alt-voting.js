@@ -18,6 +18,13 @@ L.mapbox.accessToken = 'pk.eyJ1IjoiY29yZS1naXMiLCJhIjoiaUxqQS1zQSJ9.mDT5nb8l_dWI
 
   // build map
   var map = L.mapbox.map('map', 'mapbox.light').setView([0,0],1);
+  map.options.minZoom = 4;
+  map.options.maxZoom = 10;
+  map.setMaxBounds([
+	[20.179724, -137.285156], //southwest map coordinates
+    [56.438204, -57.602539] //northeast map coordinates 
+	])
+  
   var points = L.featureGroup();
   var approvalBucklin = L.featureGroup();
   var approvalPreferential = L.featureGroup();
@@ -65,12 +72,12 @@ L.mapbox.accessToken = 'pk.eyJ1IjoiY29yZS1naXMiLCJhIjoiaUxqQS1zQSJ9.mDT5nb8l_dWI
   }
 
   var overlayMaps = {
-    "Approval Voting (Bucklin System)": approvalBucklin,
-	"Approval Voting (Preferential Voting)": approvalPreferential,
-	"Cumulative Voting": cumulativeVoting,
-	"Instant Runoff Voting": instantRunoff,
-	"Limited Vote": limitedVote,
-	"Single Transferable Vote": singleTransferable
+    "<img src='markers/cumulative-current.svg' height=24>Approval Voting (Bucklin System)": approvalBucklin,
+	"<img src='markers/cumulative-past.svg' height=24>Approval Voting (Preferential Voting)": approvalPreferential,
+	"<img src='markers/limited-current.svg' height=24>Cumulative Voting": cumulativeVoting,
+	"<img src='markers/limited-past.svg' height=24>Instant Runoff Voting": instantRunoff,
+	"<img src='markers/ranked-choice-current.svg' height=24>Limited Vote": limitedVote,
+	"<img src='markers/ranked-choice-past.svg' height=24>Single Transferable Vote": singleTransferable
   };
   
   /*function chooseIcon(category, active) {  
@@ -166,7 +173,26 @@ L.mapbox.accessToken = 'pk.eyJ1IjoiY29yZS1naXMiLCJhIjoiaUxqQS1zQSJ9.mDT5nb8l_dWI
   }
 */
   
-  L.control.layers(false, overlayMaps).addTo(map);
+  
+  //This is intended to make the legned collapse by default on mobile devices
+  //from http://www.howtocreate.co.uk/tutorials/javascript/browserwindow
+  var windowWidth = 0;
+  
+  if( typeof( window.innerWidth ) === 'number' ) {
+  windowWidth = window.innerWidth;
+} else if( document.documentElement && document.documentElement.clientWidth ) {
+  windowWidth = document.documentElement.clientWidth;
+} else if( document.body && document.body.clientWidth ) {
+  windowWidth = document.body.clientWidth;
+}
+
+if (windowWidth < 400) {
+  var collapseLegend = true;
+} else {
+  var collapseLegend = false;
+}
+  
+  L.control.layers(false, overlayMaps, {position: 'bottomleft', collapsed:collapseLegend}).addTo(map);
   map.addLayer(approvalBucklin);
   map.addLayer(approvalPreferential);
   map.addLayer(cumulativeVoting);
@@ -176,13 +202,9 @@ L.mapbox.accessToken = 'pk.eyJ1IjoiY29yZS1naXMiLCJhIjoiaUxqQS1zQSJ9.mDT5nb8l_dWI
   
   
   var bounds = points.getBounds();
-  map.fitBounds(bounds, {padding:[10,10]});
+  map.fitBounds(bounds, {padding:[30,30]});
 
   map.setView(map.getCenter());
-/*These three lines prevent the user from zooming out to space or panning to Europe; however, they prevent popups from appearing for points near bound limits*/ 
- /*map.setMaxBounds(bounds);
-  map.options.maxZoom = 9;
-  map.options.minZoom = 5;*/
 
   map.on('click', function(e) {
     var coords = document.getElementById('coords');

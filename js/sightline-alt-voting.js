@@ -1,6 +1,6 @@
 //replace the url for the spreadsheet being mapped here
 window.onload=function(){
-	getSpreadsheet('https://docs.google.com/spreadsheets/d/147IvLgMgQGpp15TFb7tZNmTUMwU0YVgkMXjl4FhNepQ/pubhtml');
+	getSpreadsheet('https://docs.google.com/spreadsheets/d/1Y6OCebLT0FEfR6d9n4Hfc0HPb0HAT0V3qOMTjhwr_NY/pubhtml');
 }
 
 //all of this is happening asynchronously; the callback is telling Tabletop to build the map using the spreadsheet
@@ -26,12 +26,12 @@ L.mapbox.accessToken = 'pk.eyJ1IjoiY29yZS1naXMiLCJhIjoiaUxqQS1zQSJ9.mDT5nb8l_dWI
 	])
   
   var points = L.featureGroup();
-  var approvalBucklin = L.featureGroup();
-  var approvalPreferential = L.featureGroup();
-  var cumulativeVoting = L.featureGroup();
-  var instantRunoff = L.featureGroup();
-  var limitedVote = L.featureGroup();
-  var singleTransferable = L.featureGroup();
+  var rankedchoiceCurrent = L.featureGroup();
+  var rankedchoicePast = L.featureGroup();
+  var limitedCurrent = L.featureGroup();
+  var limitedPast = L.featureGroup();
+  var cumulativechoiceCurrent= L.featureGroup();
+  var cumulativechoicePast = L.featureGroup();
   
   for(var i=0;i<data.length;i++) {
     var marker = L.marker([parseFloat(data[i].lat), parseFloat(data[i].lng)]);
@@ -51,33 +51,33 @@ L.mapbox.accessToken = 'pk.eyJ1IjoiY29yZS1naXMiLCJhIjoiaUxqQS1zQSJ9.mDT5nb8l_dWI
 	}));
     marker.bindPopup(popupInfo,{'maxWidth':'350','maxHeight':'350','minWidth':'200'});
     points.addLayer(marker);
-	if (category === "limited vote") {
-	  limitedVote.addLayer(marker);
+	if (category === "cumulative voting current") {
+	  cumulativechoiceCurrent.addLayer(marker);
 	}
-	else if (category === "instant runoff voting") {
-	   instantRunoff.addLayer(marker);
+	else if (category === "cumulative voting past") {
+	  cumulativechoicePast.addLayer(marker);
 	}
-	else if (category === "single transferable vote") {
-	   singleTransferable.addLayer(marker);
+	else if (category === "limited current") {
+	   limitedCurrent.addLayer(marker);
 	}
-	else if (category === "approval voting (bucklin system)") {
-	   approvalBucklin.addLayer(marker);
+	else if (category === "limited past") {
+	   limitedPast.addLayer(marker);
 	}
-	else if (category === "cumulative voting") {
-	   cumulativeVoting.addLayer(marker);
+	else if (category === "ranked choice current") {
+	   rankedchoiceCurrent.addLayer(marker);
 	}
-	else if (category === "approval voting (preferential voting)") {
-	   approvalPreferential.addLayer(marker);
+	else if (category === "ranked choice past") {
+	   rankedchoicePast.addLayer(marker);
 	}	
   }
 
   var overlayMaps = {
-    "<img src='markers/cumulative-current.svg' height=24>Approval Voting (Bucklin System)": approvalBucklin,
-	"<img src='markers/cumulative-past.svg' height=24>Approval Voting (Preferential Voting)": approvalPreferential,
-	"<img src='markers/limited-current.svg' height=24>Cumulative Voting": cumulativeVoting,
-	"<img src='markers/limited-past.svg' height=24>Instant Runoff Voting": instantRunoff,
-	"<img src='markers/ranked-choice-current.svg' height=24>Limited Vote": limitedVote,
-	"<img src='markers/ranked-choice-past.svg' height=24>Single Transferable Vote": singleTransferable
+    "<img src='markers/ranked-choice-current.svg' height=24>Ranked Choice, current": rankedchoiceCurrent,
+	"<img src='markers/ranked-choice-past.svg' height=24>Ranked Choice, past": rankedchoicePast,
+	"<img src='markers/limited-current.svg' height=24>Limited, current": limitedCurrent,
+	"<img src='markers/limited-past.svg' height=24>Limited, past": limitedPast,
+	"<img src='markers/cumulative-current.svg' height=24>Cumulative Choice, current": cumulativechoiceCurrent,
+	"<img src='markers/cumulative-past.svg' height=24>Cumulative Choice, past": cumulativechoicePast
   };
   
   /*function chooseIcon(category, active) {  
@@ -193,12 +193,12 @@ if (windowWidth < 400) {
 }
   
   L.control.layers(false, overlayMaps, {position: 'bottomleft', collapsed:collapseLegend}).addTo(map);
-  map.addLayer(approvalBucklin);
-  map.addLayer(approvalPreferential);
-  map.addLayer(cumulativeVoting);
-  map.addLayer(instantRunoff);
-  map.addLayer(limitedVote);
-  map.addLayer(singleTransferable);
+  map.addLayer(rankedchoiceCurrent);
+  map.addLayer(rankedchoicePast);
+  map.addLayer(limitedCurrent);
+  map.addLayer(limitedPast);
+  map.addLayer(cumulativechoiceCurrent);
+  map.addLayer(cumulativechoicePast);
   
   
   var bounds = points.getBounds();
@@ -227,6 +227,7 @@ function metadata(properties) {
     var prop = obj[p];
     if (prop != 'lat' &&
         prop != 'lng' &&
+		prop != 'category' &&
         prop != 'marker-color' &&		
         prop != 'markerfile' &&
 		prop != 'active' &&

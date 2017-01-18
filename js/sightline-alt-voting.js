@@ -18,6 +18,7 @@ L.mapbox.accessToken = 'pk.eyJ1IjoiY29yZS1naXMiLCJhIjoiaUxqQS1zQSJ9.mDT5nb8l_dWI
 
   // build map
   var map = L.mapbox.map('map', 'mapbox.light').setView([0,0],1);
+  map.zoomControl.setPosition('topright');
   map.options.minZoom = 4;
   map.options.maxZoom = 10;
   map.setMaxBounds([
@@ -32,6 +33,7 @@ L.mapbox.accessToken = 'pk.eyJ1IjoiY29yZS1naXMiLCJhIjoiaUxqQS1zQSJ9.mDT5nb8l_dWI
   var limitedPast = L.featureGroup();
   var cumulativechoiceCurrent= L.featureGroup();
   var cumulativechoicePast = L.featureGroup();
+ 
   
   for(var i=0;i<data.length;i++) {
     var marker = L.marker([parseFloat(data[i].lat), parseFloat(data[i].lng)]);
@@ -51,11 +53,11 @@ L.mapbox.accessToken = 'pk.eyJ1IjoiY29yZS1naXMiLCJhIjoiaUxqQS1zQSJ9.mDT5nb8l_dWI
 	}));
     marker.bindPopup(popupInfo,{'maxWidth':'350','maxHeight':'350','minWidth':'200'});
     points.addLayer(marker);
-	if (category === "cumulative voting current") {
-	  cumulativechoiceCurrent.addLayer(marker);
+	if (category === "ranked choice current") {
+	   rankedchoiceCurrent.addLayer(marker);
 	}
-	else if (category === "cumulative voting past") {
-	  cumulativechoicePast.addLayer(marker);
+	else if (category === "ranked choice past") {
+	   rankedchoicePast.addLayer(marker);
 	}
 	else if (category === "limited current") {
 	   limitedCurrent.addLayer(marker);
@@ -63,12 +65,12 @@ L.mapbox.accessToken = 'pk.eyJ1IjoiY29yZS1naXMiLCJhIjoiaUxqQS1zQSJ9.mDT5nb8l_dWI
 	else if (category === "limited past") {
 	   limitedPast.addLayer(marker);
 	}
-	else if (category === "ranked choice current") {
-	   rankedchoiceCurrent.addLayer(marker);
+	else if (category === "cumulative voting current") {
+	  cumulativechoiceCurrent.addLayer(marker);
 	}
-	else if (category === "ranked choice past") {
-	   rankedchoicePast.addLayer(marker);
-	}	
+	else if (category === "cumulative voting past") {
+	  cumulativechoicePast.addLayer(marker);
+	}
   }
 
   var overlayMaps = {
@@ -120,11 +122,7 @@ if (windowWidth < 400) {
 }
 
 //add fields here that you do not want displayed in the popupInfo. Must be all lowercase
-/*
-NEED TO FIGURE OUT HOW TO SHOW ONLY NON-NULL FIELDS IN THE POPUP;
-ALSO NEED TO FIGURE OUT HOW TO SHOW MULTIPLE IMAGES IN A GALLERY/SLID-SHOW. BELOW IS AN EXAMPLE:
-https://www.mapbox.com/mapbox.js/example/v1.0.0/markers-with-image-slideshow/
-*/
+
 function metadata(properties) {
   //This is equivalent to the first row of the spreadsheet, these are the field names; field names are called keys
   var obj = Object.keys(properties);

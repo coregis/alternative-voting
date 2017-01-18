@@ -6,10 +6,8 @@
 <style type="text/css">
 	.st0{fill:none;}
 	.st1{fill:#FFFFFF;}
-	.st2{fill:#D87300;stroke:#733D00;stroke-width:0.5;stroke-miterlimit:10;}
 </style>
 <title>marker-15.svg</title>
 <rect class="st0" width="19" height="19"/>
 <path class="st1" d="M9.2,0.3L6.7,6.2H0.3l4.9,4.9l-2.5,7.6l6.7-4.4l6.9,4.4l-2.5-7.6l4.9-4.9h-6.7L9.2,0.3z"/>
-<path class="st2" d="M-6.5,2c-2.4,0-5.3,1.5-5.3,5.3c0,2.6,4.1,8.2,5.3,9.7c1.1-1.5,5.3-7,5.3-9.7C-1.2,3.5-4.1,2-6.5,2z"/>
 </svg>

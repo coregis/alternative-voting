@@ -140,7 +140,8 @@ function metadata(properties) {
         prop != 'moreinfo-text2' &&
         prop != 'moreinfo-text3' &&
         prop != 'moreinfo-text4' &&
-        prop != 'rowNumber' &&		
+        prop != 'rowNumber' &&	
+        prop != 'sort' &&				
 		properties[prop].length > 0) {
       //prop is the field name from the spreadsheet; properties is the geoJSON generated from one row of the spreadsheet
 	  //INSTEAD OF PROP, NEED TO WRITE A NEW FUNCTION THAT DOES TEXT SUBSTITUTIONS

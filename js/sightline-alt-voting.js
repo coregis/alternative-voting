@@ -75,11 +75,11 @@ L.mapbox.accessToken = 'pk.eyJ1IjoiY29yZS1naXMiLCJhIjoiaUxqQS1zQSJ9.mDT5nb8l_dWI
 
   var overlayMaps = {
     "<img src='markers/ranked-choice-current.svg' height=24>Ranked Choice, current": rankedchoiceCurrent,
-	"<img src='markers/ranked-choice-past.svg' height=24>Ranked Choice, past": rankedchoicePast,
+	"<img src='markers/ranked-choice-past.svg' height=24>Ranked Choice, inactive": rankedchoicePast,
 	"<img src='markers/limited-current.svg' height=24>Limited, current": limitedCurrent,
-	"<img src='markers/limited-past.svg' height=24>Limited, past": limitedPast,
+	"<img src='markers/limited-past.svg' height=24>Limited, inactive": limitedPast,
 	"<img src='markers/cumulative-current.svg' height=24>Cumulative Choice, current": cumulativechoiceCurrent,
-	"<img src='markers/cumulative-past.svg' height=24>Cumulative Choice, past": cumulativechoicePast
+	"<img src='markers/cumulative-past.svg' height=24>Cumulative Choice, inactive": cumulativechoicePast
   };
   
   

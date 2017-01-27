@@ -247,6 +247,11 @@ p.moreinfo  {
 }
 
 #main {
+    transition: margin-left .5s;
+    padding: 0px;
+}
+
+#about {
 	/*transition: margin-left .5s;
     padding: 16px;*/
 	font-family: "Open Sans", Arial, Helvetica, sans-serif;
@@ -261,12 +266,6 @@ p.moreinfo  {
     z-index:2;
     background:#29473d;
 	overflow: auto;
-}
-
-
-@media screen and (max-height: 450px) {
-  .sidenav {padding-top: 15px;}
-  .sidenav a {font-size: 18px;}
 }
 
 @media screen and (max-height: 450px) {

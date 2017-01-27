@@ -137,6 +137,7 @@ function metadata(properties) {
         prop != 'markerfile' &&
 		prop != 'active' &&
         prop != 'rowNumber' &&
+		prop != 'moreinfo-text1' &&
         prop != 'moreinfo-text2' &&
         prop != 'moreinfo-text3' &&
         prop != 'moreinfo-text4' &&

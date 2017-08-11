@@ -91,7 +91,7 @@ L.mapbox.accessToken = 'pk.eyJ1IjoiY29yZS1naXMiLCJhIjoiaUxqQS1zQSJ9.mDT5nb8l_dWI
 	"<img src='markers/stv.svg' height=24>Single Transferrable Vote, current": stvCurrent,
 	"<img src='markers/stv-inactive.svg' height=24>Single Transferable Vote, inactive": stvPast,
 	"<img src='markers/limited-vote.svg' height=24>Limited Vote, current": limitedvoteCurrent,
-	"<img src='markers/limited-inactive.svg' height=24>Limited Vote, inactive":  limitedvotePast,
+	"<img src='markers/limited-vote-inactive.svg' height=24>Limited Vote, inactive":  limitedvotePast,
 	"<img src='markers/cumulative-voting.svg' height=24>Cumulative Voting, current": cumulativvoteCurrent,
 	"<img src='markers/cumulative-voting-inactive.svg' height=24>Cumulative Voting, inactive": cumulativevotePast
   };
@@ -150,7 +150,9 @@ function metadata(properties) {
     if (prop != 'lat' &&
         prop != 'lng' &&
 		prop != 'single-or-multi' &&
+		prop != 'category' &&
 		prop != 'category-old' &&
+		prop != 'subcategory-display' &&
         prop != 'marker-color' &&		
         prop != 'markerfile' &&
 		prop != 'active' &&

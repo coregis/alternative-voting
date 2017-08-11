@@ -27,13 +27,15 @@ L.mapbox.accessToken = 'pk.eyJ1IjoiY29yZS1naXMiLCJhIjoiaUxqQS1zQSJ9.mDT5nb8l_dWI
 	])
   
   var points = L.featureGroup();
-  var rankedchoiceCurrent = L.featureGroup();
-  var rankedchoicePast = L.featureGroup();
-  var limitedCurrent = L.featureGroup();
-  var limitedPast = L.featureGroup();
-  var cumulativechoiceCurrent= L.featureGroup();
-  var cumulativechoicePast = L.featureGroup();
- 
+  var instantrunoffCurrent = L.featureGroup();
+  var instantrunoffPast = L.featureGroup();
+  var otherrankedchoicePast = L.featureGroup(); 
+  var stvCurrent = L.featureGroup();
+  var stvPast = L.featureGroup();
+  var limitedvoteCurrent= L.featureGroup();
+  var limitedvotePast = L.featureGroup();
+  var cumulativvoteCurrent= L.featureGroup();
+  var cumulativevotePast = L.featureGroup();
   
   for(var i=0;i<data.length;i++) {
     var marker = L.marker([parseFloat(data[i].lat), parseFloat(data[i].lng)]);
@@ -53,33 +55,45 @@ L.mapbox.accessToken = 'pk.eyJ1IjoiY29yZS1naXMiLCJhIjoiaUxqQS1zQSJ9.mDT5nb8l_dWI
 	}));
     marker.bindPopup(popupInfo,{'maxWidth':'350','maxHeight':'350','minWidth':'200'});
     points.addLayer(marker);
-	if (category === "ranked choice current") {
-	   rankedchoiceCurrent.addLayer(marker);
+	if (category === "instant runoff, current") {
+	   instantrunoffCurrent.addLayer(marker);
 	}
-	else if (category === "ranked choice past") {
-	   rankedchoicePast.addLayer(marker);
+	else if (category === "instant runoff, inactive") {
+	   instantrunoffPast.addLayer(marker);
 	}
-	else if (category === "limited current") {
-	   limitedCurrent.addLayer(marker);
+	else if (category === "other ranked choice, inactive") {
+	   otherrankedchoicePast.addLayer(marker);
+	}
+	else if (category === "single transferable vote, current") {
+	  stvCurrent.addLayer(marker);
+	}
+	else if (category === "single transferable vote, inactive") {
+	  stvPast.addLayer(marker);
+	}
+	else if (category === "limited vote, current") {
+	  limitedvoteCurrent.addLayer(marker);
 	}
 	else if (category === "limited past") {
-	   limitedPast.addLayer(marker);
+	   limitedvotePast.addLayer(marker);
 	}
-	else if (category === "cumulative voting current") {
-	  cumulativechoiceCurrent.addLayer(marker);
+	else if (category === "cumulative voting, current") {
+	  cumulativvoteCurrent.addLayer(marker);
 	}
-	else if (category === "cumulative voting past") {
-	  cumulativechoicePast.addLayer(marker);
+	else if (category === "cumulative voting, inactive") {
+	  cumulativevotePast.addLayer(marker);
 	}
   }
 
   var overlayMaps = {
-    "<img src='markers/ranked-choice-current.svg' height=24>Ranked Choice, current": rankedchoiceCurrent,
-	"<img src='markers/ranked-choice-past.svg' height=24>Ranked Choice, inactive": rankedchoicePast,
-	"<img src='markers/limited-current.svg' height=24>Limited, current": limitedCurrent,
-	"<img src='markers/limited-past.svg' height=24>Limited, inactive": limitedPast,
-	"<img src='markers/cumulative-current.svg' height=24>Cumulative Choice, current": cumulativechoiceCurrent,
-	"<img src='markers/cumulative-past.svg' height=24>Cumulative Choice, inactive": cumulativechoicePast
+    "<img src='markers/instant-runoff.svg' height=24>Ranked Choice, current": instantrunoffCurrent,
+	"<img src='markers/instant-runoff-inactive.svg' height=24>Ranked Choice, inactive": instantrunoffPast,
+	"<img src='markers/other-ranked-choice-inactive.svg' height=24>Limited, current": otherrankedchoicePast,
+	"<img src='markers/stv.svg' height=24>Limited, inactive": stvCurrent,
+	"<img src='markers/stv-inactive.svg' height=24>Cumulative Choice, current": stvPast,
+	"<img src='markers/limited-vote.svg' height=24>Cumulative Choice, inactive": limitedvoteCurrent,
+	"<img src='markers/limited-inactive.svg' height=24>Limited, inactive":  limitedvotePast,
+	"<img src='markers/cumulative-voting.svg' height=24>Cumulative Choice, current": cumulativvoteCurrent,
+	"<img src='markers/cumulative-voting-inactive.svg' height=24>Cumulative Choice, inactive": cumulativevotePast
   };
   
   
@@ -102,12 +116,15 @@ if (windowWidth < 400) {
 }
   
   L.control.layers(false, overlayMaps, {position: 'bottomleft', collapsed:collapseLegend}).addTo(map);
-  map.addLayer(rankedchoiceCurrent);
-  map.addLayer(rankedchoicePast);
-  map.addLayer(limitedCurrent);
-  map.addLayer(limitedPast);
-  map.addLayer(cumulativechoiceCurrent);
-  map.addLayer(cumulativechoicePast);
+  map.addLayer(instantrunoffCurrent);
+  map.addLayer(instantrunoffPast,);
+  map.addLayer(otherrankedchoicePast);
+  map.addLayer(stvCurrent);
+  map.addLayer(stvPast);
+  map.addLayer(limitedvoteCurrent);
+  map.addLayer(limitedvotePast);
+  map.addLayer(cumulativvoteCurrent);
+  map.addLayer(cumulativevotePast);
   
   
   var bounds = points.getBounds();
@@ -132,7 +149,7 @@ function metadata(properties) {
     var prop = obj[p];
     if (prop != 'lat' &&
         prop != 'lng' &&
-		prop != 'category' &&
+		prop != 'subcategory-display-new' &&
         prop != 'marker-color' &&		
         prop != 'markerfile' &&
 		prop != 'active' &&

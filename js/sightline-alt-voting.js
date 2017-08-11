@@ -85,15 +85,15 @@ L.mapbox.accessToken = 'pk.eyJ1IjoiY29yZS1naXMiLCJhIjoiaUxqQS1zQSJ9.mDT5nb8l_dWI
   }
 
   var overlayMaps = {
-    "<img src='markers/instant-runoff.svg' height=24>Ranked Choice, current": instantrunoffCurrent,
-	"<img src='markers/instant-runoff-inactive.svg' height=24>Ranked Choice, inactive": instantrunoffPast,
-	"<img src='markers/other-ranked-choice-inactive.svg' height=24>Limited, current": otherrankedchoicePast,
-	"<img src='markers/stv.svg' height=24>Limited, inactive": stvCurrent,
-	"<img src='markers/stv-inactive.svg' height=24>Cumulative Choice, current": stvPast,
-	"<img src='markers/limited-vote.svg' height=24>Cumulative Choice, inactive": limitedvoteCurrent,
-	"<img src='markers/limited-inactive.svg' height=24>Limited, inactive":  limitedvotePast,
-	"<img src='markers/cumulative-voting.svg' height=24>Cumulative Choice, current": cumulativvoteCurrent,
-	"<img src='markers/cumulative-voting-inactive.svg' height=24>Cumulative Choice, inactive": cumulativevotePast
+    "<img src='markers/instant-runoff.svg' height=24>Instant Runoff, current": instantrunoffCurrent,
+	"<img src='markers/instant-runoff-inactive.svg' height=24>Instant Runoff, inactive": instantrunoffPast,
+	"<img src='markers/other-ranked-choice-inactive.svg' height=24>Other Ranked Choice, inactive": otherrankedchoicePast,
+	"<img src='markers/stv.svg' height=24>Single Transferrable Vote, current": stvCurrent,
+	"<img src='markers/stv-inactive.svg' height=24>Single Transferable Vote, inactive": stvPast,
+	"<img src='markers/limited-vote.svg' height=24>Limited Vote, current": limitedvoteCurrent,
+	"<img src='markers/limited-inactive.svg' height=24>Limited Vote, inactive":  limitedvotePast,
+	"<img src='markers/cumulative-voting.svg' height=24>Cumulative Voting, current": cumulativvoteCurrent,
+	"<img src='markers/cumulative-voting-inactive.svg' height=24>Cumulative Voting, inactive": cumulativevotePast
   };
   
   
@@ -149,7 +149,8 @@ function metadata(properties) {
     var prop = obj[p];
     if (prop != 'lat' &&
         prop != 'lng' &&
-		prop != 'subcategory-display-new' &&
+		prop != 'single-or-multi' &&
+		prop != 'category-old' &&
         prop != 'marker-color' &&		
         prop != 'markerfile' &&
 		prop != 'active' &&

@@ -55,31 +55,31 @@ L.mapbox.accessToken = 'pk.eyJ1IjoiY29yZS1naXMiLCJhIjoiaUxqQS1zQSJ9.mDT5nb8l_dWI
 	}));
     marker.bindPopup(popupInfo,{'maxWidth':'350','maxHeight':'350','minWidth':'200'});
     points.addLayer(marker);
-	if (category === "instant runoff, current") {
+	if (category === "instant runoff current") {
 	   instantrunoffCurrent.addLayer(marker);
 	}
-	else if (category === "instant runoff, inactive") {
+	else if (category === "instant runoff inactive") {
 	   instantrunoffPast.addLayer(marker);
 	}
-	else if (category === "other ranked choice, inactive") {
+	else if (category === "other ranked choice inactive") {
 	   otherrankedchoicePast.addLayer(marker);
 	}
-	else if (category === "single transferable vote, current") {
+	else if (category === "single transferable vote current") {
 	  stvCurrent.addLayer(marker);
 	}
-	else if (category === "single transferable vote, inactive") {
+	else if (category === "single transferable vote inactive") {
 	  stvPast.addLayer(marker);
 	}
-	else if (category === "limited vote, current") {
+	else if (category === "limited vote current") {
 	  limitedvoteCurrent.addLayer(marker);
 	}
-	else if (category === "limited past") {
+	else if (category === "limited vote inactive") {
 	   limitedvotePast.addLayer(marker);
 	}
-	else if (category === "cumulative voting, current") {
+	else if (category === "cumulative voting current") {
 	  cumulativvoteCurrent.addLayer(marker);
 	}
-	else if (category === "cumulative voting, inactive") {
+	else if (category === "cumulative voting inactive") {
 	  cumulativevotePast.addLayer(marker);
 	}
   }

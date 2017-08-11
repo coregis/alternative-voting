@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta name="viewport" content="width=device-width" charset="UTF-8">
+<title>Alternative Voting Systems</title>
+<script src='https://api.mapbox.com/mapbox.js/v2.4.0/mapbox.js'></script>
+<link href='https://api.mapbox.com/mapbox.js/v2.4.0/mapbox.css' rel='stylesheet' />
+<script type="text/javascript" src="js/tabletop.js"></script>
+<script src="data.js"></script>
+<link href="css/alternative-voting-style.css" rel="stylesheet">
+
+<!--[if IE]>
+    <script src="http://html5shiv.googlecode.com/svn/trunk/html5.js"></script>
+<![endif]-->
+</head>
+<body>
+
+<!--BEGIN FLYOUT FOR 'ABOUT THIS MAP'-->
+
+<div id="mySidenav" class="sidenav">
+	<a href="javascript:void(0)" class="closebtn" onclick="closeNav()">&times;</a>
+	<p class="navtitle">Alternative Voting Systems</p>
+	
+	<p class="moreinfo">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Donec condimentum euismod pharetra. Suspendisse tempor scelerisque ipsum a aliquam. In sit amet iaculis est. Sed mauris erat, posuere id sapien in, facilisis blandit augue. 
+	
+	<br><br>
+	
+	Ut ut dolor bibendum, pellentesque sapien a, egestas orci. Sed ullamcorper nisl at arcu dignissim, nec suscipit ligula rutrum. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Vivamus nec turpis tincidunt, venenatis enim sed, lacinia turpis. Nam malesuada ipsum sed libero vulputate, ac semper lacus varius. Donec a tellus sem. Nam sed efficitur leo, ut imperdiet ex. Sed interdum consectetur viverra.
+	</p>
+  <a href="https://www.sightline.org" target="_blank">Sightline Institute</a>
+  <a href="https://www.sightline.org/about/contact-us/" target="_blank">Contact</a>
+</div>
+
+<div id="main">
+
+<div id="about">
+  <span style="font-size:16px;cursor:pointer" onclick="openNav()">&#9776; About this map</span>
+</div>
+
+<script>
+function openNav() {
+    document.getElementById("mySidenav").style.width = "250px";
+    document.getElementById("main").style.marginLeft = "250px";
+}
+
+function closeNav() {
+    document.getElementById("mySidenav").style.width = "0";
+    document.getElementById("main").style.marginLeft= "0";
+}
+</script>
+
+<!--END FLYOUT FOR 'ABOUT THIS MAP'-->
+
+<script type="text/javascript" src="js/sightline-alt-voting.js"></script>
+
+<div id="map"></div>
+
+<div class="legendbox">
+	<div class="legendtitle">Jurisdiction</div>
+	
+	<div class="statebox">
+		<div class="stateicon"><img src='markers/state.svg' height=20></div>
+		<div class="statecaption">State Wide Systems</div>
+	</div>
+	
+	<div class="schoolbox">
+		<div class="schoolicon"><img src='markers/school.svg' height=20></div>
+		<div class="schoolcaption">School District Systems</div>
+	</div>	
+
+</div>
+
+<div class="logobox"><a href="https://www.sightline.org" target="_blank"><img src='images/sightline_logo.svg' height = 80></a></div>
+
+</div>
+
+<script>
+function openNav() {
+    document.getElementById("mySidenav").style.width = "250px";
+    document.getElementById("main").style.marginLeft = "250px";
+}
+
+function closeNav() {
+    document.getElementById("mySidenav").style.width = "0";
+    document.getElementById("main").style.marginLeft= "0";
+}
+</script>
+
+<!-- Use any element to open the sidenav
+<span onclick="openNav()">open</span> -->
+
+
+</body>
+<html>

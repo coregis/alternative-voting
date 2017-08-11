@@ -1,6 +1,6 @@
 //replace the url for the spreadsheet being mapped here
 window.onload=function(){
-	getSpreadsheet('https://docs.google.com/spreadsheets/d/1cdP63d5ORuil8s8FLilXwrplr6hUCEpmlM4QNw6tw1Q/pubhtml');
+	getSpreadsheet('https://docs.google.com/spreadsheets/d/1Y6OCebLT0FEfR6d9n4Hfc0HPb0HAT0V3qOMTjhwr_NY/pubhtml');
 }
 
 //all of this is happening asynchronously; the callback is telling Tabletop to build the map using the spreadsheet

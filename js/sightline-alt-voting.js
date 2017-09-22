@@ -89,7 +89,7 @@ L.mapbox.accessToken = 'pk.eyJ1IjoiY29yZS1naXMiLCJhIjoiaUxqQS1zQSJ9.mDT5nb8l_dWI
 	"<img src='markers/instant-runoff-inactive.svg' height=24>Instant Runoff, inactive": instantrunoffPast,
 	"<img src='markers/other-ranked-choice-inactive.svg' height=24>Other Ranked Choice, inactive": otherrankedchoicePast,
 	"<img src='markers/stv.svg' height=24>Single-Transferable Vote, current": stvCurrent,
-	"<img src='markers/stv-inactive.svg' height=24>Single Transferable Vote, inactive": stvPast,
+	"<img src='markers/stv-inactive.svg' height=24>Single-Transferable Vote, inactive": stvPast,
 	"<img src='markers/limited-vote.svg' height=24>Limited Vote, current": limitedvoteCurrent,
 	"<img src='markers/limited-vote-inactive.svg' height=24>Limited Vote, inactive":  limitedvotePast,
 	"<img src='markers/cumulative-voting.svg' height=24>Cumulative Voting, current": cumulativvoteCurrent,

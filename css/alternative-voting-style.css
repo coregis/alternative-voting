@@ -21,12 +21,34 @@ p.title {
 }
 
 /*This is formatting for the second line in the popup */
-p.subcategory {
+p.subcategory-display-new {
 	font-family: "Open Sans", Arial, Helvetica, sans-serif;
 	font-size: 16px;
-	font-style: italic;
+	font-style: normal;
 	font-variant: normal;
-	font-weight: normal;
+	font-weight: bold;
+	margin-top: 0;
+    margin-bottom: 0;
+}
+
+/*This is formatting for the third line in the popup */
+p.dates-active {
+	font-family: "Open Sans", Arial, Helvetica, sans-serif;
+	font-size: 16px;
+	font-style: normal;
+	font-variant: normal;
+	font-weight: bold;
+	margin-top: 0;
+    margin-bottom: 0;
+}
+
+/*This is formatting for the fourth line in the popup */
+p.office {
+	font-family: "Open Sans", Arial, Helvetica, sans-serif;
+	font-size: 16px;
+	font-style: normal;
+	font-variant: normal;
+	font-weight: bold;
 }
 
 p {
@@ -35,6 +57,8 @@ p {
 	font-style: normal;
 	font-variant: normal;
 	font-weight: normal;
+	margin-top: 0;
+    margin-bottom: 0;
 }
 
 .leaflet-popup-scrolled {

@@ -5,7 +5,7 @@ window.onload=function(){
 
 //all of this is happening asynchronously; the callback is telling Tabletop to build the map using the spreadsheet
 function getSpreadsheet(key){
-  Tabletop.init( { 
+  Tabletop.init( {
     key: key,
     callback: buildMap,
     simpleSheet: true
@@ -23,24 +23,24 @@ L.mapbox.accessToken = 'pk.eyJ1IjoiY29yZS1naXMiLCJhIjoiaUxqQS1zQSJ9.mDT5nb8l_dWI
   map.options.maxZoom = 10;
   map.setMaxBounds([
 	[20.179724, -137.285156], //southwest map coordinates
-    [56.438204, -57.602539] //northeast map coordinates 
+    [56.438204, -57.602539] //northeast map coordinates
 	])
-  
+
   var points = L.featureGroup();
   var instantrunoffCurrent = L.featureGroup();
   var instantrunoffPast = L.featureGroup();
-  var otherrankedchoicePast = L.featureGroup(); 
+  var otherrankedchoicePast = L.featureGroup();
   var stvCurrent = L.featureGroup();
   var stvPast = L.featureGroup();
   var limitedvoteCurrent= L.featureGroup();
   var limitedvotePast = L.featureGroup();
   var cumulativvoteCurrent= L.featureGroup();
   var cumulativevotePast = L.featureGroup();
-  
+
   for(var i=0;i<data.length;i++) {
     var marker = L.marker([parseFloat(data[i].lat), parseFloat(data[i].lng)]);
     var popupInfo = metadata(data[i]);
-	
+
 	//type in your desired dimensions for the markers; the marker will always be square
 	var iconDim = 31;
 	category = data[i].category.toLowerCase();
@@ -82,8 +82,18 @@ L.mapbox.accessToken = 'pk.eyJ1IjoiY29yZS1naXMiLCJhIjoiaUxqQS1zQSJ9.mDT5nb8l_dWI
 	else if (category === "cumulative voting inactive") {
 	  cumulativevotePast.addLayer(marker);
 	}
-  }
+}
 
+/* IMPORTANT!
+The subheadings in the legend are not controlled by anything in this file.
+Instead, they are controlled by CSS rules, using only the order of items to specify where they go.
+So any change in the order or number of layers in the legend will need to have a corresponding change made to the CSS file.
+To do this, go to:
+	css/alternative-voting-style.css
+And search for the selectors that include:
+	div.leaflet-control-layers-overlays label:nth-child
+For each of those, the number in () specifies which legend item they are putting a subheading before.
+*/
   var overlayMaps = {
     "<img src='markers/instant-runoff.svg' height=24>Instant Runoff, current": instantrunoffCurrent,
 	"<img src='markers/instant-runoff-inactive.svg' height=24>Instant Runoff, inactive": instantrunoffPast,
@@ -95,12 +105,12 @@ L.mapbox.accessToken = 'pk.eyJ1IjoiY29yZS1naXMiLCJhIjoiaUxqQS1zQSJ9.mDT5nb8l_dWI
 	"<img src='markers/cumulative-voting.svg' height=24>Cumulative Voting, current": cumulativvoteCurrent,
 	"<img src='markers/cumulative-voting-inactive.svg' height=24>Cumulative Voting, inactive": cumulativevotePast
   };
-  
-  
+
+
   //This is intended to make the legned collapse by default on mobile devices
   //from http://www.howtocreate.co.uk/tutorials/javascript/browserwindow
   var windowWidth = 0;
-  
+
   if( typeof( window.innerWidth ) === 'number' ) {
   windowWidth = window.innerWidth;
 } else if( document.documentElement && document.documentElement.clientWidth ) {
@@ -114,8 +124,12 @@ if (windowWidth < 400) {
 } else {
   var collapseLegend = false;
 }
-  
+
+
+// This line adds layers to the _legend_
   L.control.layers(false, overlayMaps, {position: 'bottomleft', collapsed:collapseLegend}).addTo(map);
+
+// This set of lines loads layers to the map
   map.addLayer(instantrunoffCurrent);
   map.addLayer(instantrunoffPast,);
   map.addLayer(otherrankedchoicePast);
@@ -125,8 +139,8 @@ if (windowWidth < 400) {
   map.addLayer(limitedvotePast);
   map.addLayer(cumulativvoteCurrent);
   map.addLayer(cumulativevotePast);
-  
-  
+
+
   var bounds = points.getBounds();
   map.fitBounds(bounds, {padding:[30,30]});
 
@@ -153,7 +167,7 @@ function metadata(properties) {
 		prop != 'category' &&
 		prop != 'category-old' &&
 		prop != 'subcategory-display' &&
-        prop != 'marker-color' &&		
+        prop != 'marker-color' &&
         prop != 'markerfile' &&
 		prop != 'active' &&
         prop != 'rowNumber' &&
@@ -161,10 +175,10 @@ function metadata(properties) {
         prop != 'moreinfo-text2' &&
         prop != 'moreinfo-text3' &&
         prop != 'moreinfo-text4' &&
-        prop != 'rowNumber' &&	
+        prop != 'rowNumber' &&
         prop != 'sort' &&
         prop != 'school' &&
-        prop != 'statewide' &&		
+        prop != 'statewide' &&
 		properties[prop].length > 0) {
       //prop is the field name from the spreadsheet; properties is the geoJSON generated from one row of the spreadsheet
 	  //INSTEAD OF PROP, NEED TO WRITE A NEW FUNCTION THAT DOES TEXT SUBSTITUTIONS

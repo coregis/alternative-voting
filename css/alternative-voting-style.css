@@ -73,14 +73,14 @@ p {
   font-size:12px;
  /* width:auto !important;*/
   }
-  
+
 .leaflet-popup-content-wrapper {
   background: #29473d;
   padding:1px;
   text-align:left;
   pointer-events:all;
   line-height:24px;
-  } 
+  }
 
 .leaflet-popup-tip {
   width:0;
@@ -90,27 +90,27 @@ p {
   border-right:10px solid transparent;
   border-top:10px solid #29473d;
   box-shadow:none;
-  } 
-  
-/*this controls the appearance of the expanded layer switcher */  
+  }
+
+/*this controls the appearance of the expanded layer switcher */
 .leaflet-control-layers-expanded {
   background:#42565B;
   padding:6px 10px 6px 6px;
   color:#404040;
   color:rgba(0,0,0,0.75);
   font-size: 14px;
-  }  
-  
+  }
+
   /*this determines the color of the label text in the layer switcher box */
   .leaflet-control-layers label {
   display: block;
   color: #fff
   }
- 
+
 a.leaflet-popup-close-button {
 	color: #fff
 }
- 
+
 a:link{
   color:#b1d4cb;
 }
@@ -153,7 +153,7 @@ a:visited{
 	font-weight: bold;
 	color: #fff
 }
-	
+
 .statecaption	{
 	float:right;
 	width:150px;
@@ -290,6 +290,26 @@ p.moreinfo  {
     z-index:2;
     background:#29473d;
 	overflow: auto;
+}
+
+
+/*
+This and the following selector define subheadings.  In these:
+The number set as :nth-child(X) specifies which label to put the heading before.
+The text in the content property is the label text, in which \A denotes a line break.
+The white-space property is essential for the line breaks to be handled correctly.
+Everything else is normal CSS styling
+*/
+div.leaflet-control-layers-overlays label:nth-child(1)::before {
+	content: "Single-winner election systems\A";
+	white-space: pre;
+	font-weight: bold;
+}
+
+div.leaflet-control-layers-overlays label:nth-child(4)::before {
+	content: "\AMulti-winner election systems\A";
+	white-space: pre;
+	font-weight: bold;
 }
 
 @media screen and (max-height: 450px) {
